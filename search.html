@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body style="background-color: #343A40;" >
+    <div class="mypanel"></div>
+	
+	<!-- Search form -->
+
+<div class="md-form mt-0" style="padding: 10px;">
+  <input id="myInput" class="form-control" type="text" placeholder="Search" aria-label="Search">
+</div>
+	
+	<table  id="list_table_json" border="1" class="table table-dark">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Rating</th>			
+			<th>Thumbnail</th>
+        </tr>                   
+    </thead>
+</table>
+
+   <script type="text/javascript">
+//$(document).ready(function(){
+//   myFunc();
+//});
+
+function myFunc(val){
+$.ajax({
+        url: "https://cors-anime.herokuapp.com/https://animeflix.io/api/search?q=" + val,
+        dataType: 'json',
+		
+		headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+        type: 'get',
+		
+        cache:false,
+        success: function(data){
+            /*console.log(data);*/
+            var event_data = '';
+			var url = window.location.href.replace('/search.html','/anime.html#');
+            $.each(data.data, function(index, value){
+                /*console.log(value);*/
+                event_data += '<tr>';
+                event_data += '<td maxlength="10"> <a href="' + url + value.id +  '">  '+value.title.substring(0, 40) + "..."+'</td>';
+                event_data += '<td>' + value.gwa_rating+'</td>';
+				event_data += '<td><img src="' + value.cover_photo + '" width="250px"  class="img-fluid" alt="Responsive image"/></td>';
+                event_data += '</tr>';
+            });
+            $("#list_table_json").append(event_data);
+        },
+        error: function(xhr, d){
+            console.log("error");
+           // alert("404. Please wait until the File is Loaded.");
+        }
+    });
+}
+
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   myFunc(input.value);
+  }
+});
+</script>
+    
+</body>
+</html>

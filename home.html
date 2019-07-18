@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body style="background-color: #343A40;" >
+    <div class="mypanel"></div>
+	
+	<table  id="list_table_json" border="1" class="table table-dark">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Episode</th>			
+			<th>Thumbnail</th>
+        </tr>                   
+    </thead>
+</table>
+
+   <script type="text/javascript">
+$(document).ready(function(){
+    $.ajax({
+        url: "https://cors-anime.herokuapp.com/https://animeflix.io/api/episodes/latest?limit=12",
+        dataType: 'json',
+		
+		headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+        type: 'get',
+		
+        cache:false,
+        success: function(data){
+            /*console.log(data);*/
+            var event_data = '';
+			var url = window.location.href.replace('/home.html','/episode.html#');
+            $.each(data.data, function(index, value){
+                /*console.log(value);*/
+                event_data += '<tr>';
+                event_data += '<td maxlength="10"> <a href="' + url + value.episode.id +  '">  '+value.title.substring(0, 30) + "..."+'</td>';
+                event_data += '<td>'+ "Ep: " + value.episode.episode_num+'</td>';
+				event_data += '<td><img src="' + value.thumbnail + '" width="250px"  class="img-fluid" alt="Responsive image"/></td>';
+                event_data += '</tr>';
+            });
+            $("#list_table_json").append(event_data);
+        },
+        error: function(xhr, d){
+            console.log("error");
+           // alert("404. Please wait until the File is Loaded.");
+        }
+    });
+});
+</script>
+    
+</body>
+</html>
