@@ -1,14 +1,14 @@
 <html lang="en">
 <head>
-<title>JavaScript - read JSON from URL</title>
+<title>AnimeB - watch anime</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
 <body style="background-color: #343A40;" >
-    <div class="mypanel"></div>
-	
+    
+	<h2 style="color: white;"> Recent Releases </h2>
 	<table  id="list_table_json" border="1" class="table table-dark">
     <thead>
         <tr>
@@ -18,11 +18,14 @@
         </tr>                   
     </thead>
 </table>
-
+	<div id="loader" style="text-align: center;" style="visibility: hidden;">
+		<img src="https://thumbs.gfycat.com/IlliterateGoldenDugong-size_restricted.gif" width="50px"/>
+	</div>
    <script type="text/javascript">
 $(document).ready(function(){
     $.ajax({
-        url: "https://cors-anime.herokuapp.com/https://animeflix.io/api/episodes/latest?limit=12",
+	
+        url: "https://cors-anime.herokuapp.com/https://animeflix.io/api/episodes/latest?limit=25",
         dataType: 'json',
 		
 		headers: {
@@ -31,14 +34,32 @@ $(document).ready(function(){
         type: 'get',
 		
         cache:false,
+		
+		beforeSend: function() {
+		document.getElementById("loader").style.visibility = "visible";
+			
+		},
+		complete: function(){
+			document.getElementById("loader").style.visibility = "hidden";
+			
+		},
         success: function(data){
             /*console.log(data);*/
             var event_data = '';
 			var url = window.location.href.replace('/home.html','/episode.html#');
+			var title;
+			var a = "";
             $.each(data.data, function(index, value){
                 /*console.log(value);*/
+				title = value.title;
+				if(title.length>30){
+					a="...";
+				}
+				else {
+					a="";
+				}
                 event_data += '<tr>';
-                event_data += '<td maxlength="10"> <a href="' + url + value.episode.id +  '">  '+value.title.substring(0, 30) + "..."+'</td>';
+                event_data += '<td> <a href="' + url + value.episode.id +  '">  '+title.substring(0, 30) + a +'</td>';
                 event_data += '<td>'+ "Ep: " + value.episode.episode_num+'</td>';
 				event_data += '<td><img src="' + value.thumbnail + '" width="250px"  class="img-fluid" alt="Responsive image"/></td>';
                 event_data += '</tr>';
