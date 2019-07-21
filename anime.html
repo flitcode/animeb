@@ -106,6 +106,7 @@ function myfunc(){
 			var a = "";
 			
 			document.getElementById("animename").innerHTML = data.anime.title + " Episodes";
+			document.title = data.anime.title + " Episodes";
             $.each(data.data, function(index, value){
                 /*console.log(value);*/
 				title = value.title;
