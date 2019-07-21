@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="scripts/home.js"> </script>
+	<script src="scripts/movies.js"> </script>
 </head>
 
 <body style="background-color: #343A40;" >
@@ -12,17 +12,16 @@
     <div style="text-align: center;" class="btn-group" >
 	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/home.html" role="button">Home</a> 
 	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/popular.html" role="button">Popular</a>
-	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/movies.html" role="button">Movies</a> 
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/movies.html" role="button">Movies</a> 	
 	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/search.html" role="button">Search</a> 
 	</div>
 </div>
-    
-	<h2 style="color: white;"> Recent Releases </h2>
+	<h2 style="color: white;"> Popular Anime </h2>
 	<table  id="list_table_json" border="1" class="table table-dark">
     <thead>
         <tr>
             <th>Name</th>
-            <th>Episode</th>			
+            <th>Rating</th>			
 			<th>Thumbnail</th>
         </tr>                   
     </thead>
@@ -30,7 +29,9 @@
 	<div id="loader" style="text-align: center;" style="visibility: hidden;">
 		<img src="https://thumbs.gfycat.com/IlliterateGoldenDugong-size_restricted.gif" width="50px"/>
 	</div>
-   
-    
+	<div style="text-align: center;">
+		<button id="btn2" type="button" onclick="loadmore()" class="btn btn-primary" style="text-align: center;">Load More</button>
+	</div>
+
 </body>
 </html>
