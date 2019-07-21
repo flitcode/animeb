@@ -7,8 +7,13 @@
 </head>
 
 <body style="background-color: #343A40;">
-    <div class="mypanel"></div>
-	
+<div style="text-align: center; background-color:#007BFF;">
+    <div style="text-align: center;" class="btn-group" >
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/home.html" role="button">Home</a> 
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/popular.html" role="button">Popular</a> 
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/search.html" role="button">Search</a> 
+	</div>
+</div>
 	<table  id="list_table_json" border ="1" class="table table-dark">
     <thead>
         <tr>
@@ -46,13 +51,13 @@ $(document).ready(function(){
 		},
         success: function(data){
             /*console.log(data);*/
-			console.log(data);
+		//	console.log(data);
             var event_data = '';
 			var a;
 			var videourl;
 			
             $.each(data, function(index, value){
-                console.log(Object.keys(value)[0]);
+           //     console.log(Object.keys(value)[0]);
 				videourl = value.file;
 				if (videourl.endsWith(".mp4"))
 				{

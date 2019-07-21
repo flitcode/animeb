@@ -7,10 +7,16 @@
 </head>
 
 <body style="background-color: #343A40;" >
+<div style="text-align: center; background-color:#007BFF;">
+    <div style="text-align: center;" class="btn-group" >
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/home.html" role="button">Home</a> 
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/popular.html" role="button">Popular</a> 
+	<a class="btn btn-primary" href="https://flitcode.github.io/animeb/search.html" role="button">Search</a> 
+	</div>
+</div>
 	
 	
-	
-	<h2 style="color: white;"> Episodes </h2>
+	<h2 style="color: white;" id="animename"> </h2>
 	<table  id="list_table_json" border="1" class="table table-dark">
     <thead>
         <tr>
@@ -62,7 +68,7 @@ function myfunc(){
 			
 			var title;
 			var a = "";
-			
+			document.getElementById("animename").append(data.anime.title + " Episodes");
 			
             $.each(data.data, function(index, value){
                 /*console.log(value);*/
