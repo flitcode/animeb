@@ -6,9 +6,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	
 	<script type="text/javascript">
-//$(document).ready(myfunc);
+$(document).ready(myfunc1);
 
-	var number = 1;
+	var number = 0;
 
 function myfunc(){
 	document.getElementById("btn1").style.visibility = "hidden";
@@ -109,7 +109,10 @@ function myfunc(){
             $.each(data.data, function(index, value){
                 /*console.log(value);*/
 				title = value.title;
-				if(title.length>30){
+				if(title == null){
+				title="No value given";
+				}
+				else if(title.length>30){
 					a="...";
 				}
 				else {
@@ -157,8 +160,7 @@ function myfunc(){
 		<img src="https://thumbs.gfycat.com/IlliterateGoldenDugong-size_restricted.gif" width="50px"/>
 	</div>
 	<div style="text-align: center;">
-	<button id="btn1" type="button" onclick="myfunc()" class="btn btn-primary" style="text-align: center;">Load Episodes</button> <br />
-	<button id="btn2" type="button" onclick="myfunc1()" class="btn btn-primary" style="text-align: center; visibility:hidden;">Load More</button>
+	<button id="btn2" type="button" onclick="myfunc1()" class="btn btn-primary" style="text-align: center;">Load More</button>
 	</div>
    
     
