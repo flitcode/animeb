@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div id="element"> </div>
+
+   <script type="text/javascript">
+$(document).ready(function(){
+    $.get("a.txt",function(returnedData) {
+    $("#element").text(returnedData);
+},"text/plain");
+});
+</script>
+    
+</body>
+</html>
