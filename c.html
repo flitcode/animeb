@@ -9,19 +9,11 @@
 
    <script type="text/javascript">
 $(document).ready(function(){
-    const fs = require('fs');
-  
-// Reading data in utf-8 format 
-// which is a type of character set. 
-// Instead of 'utf-8' it can be  
-// other character set also like 'ascii' 
-fs.readFile('a.txt', 'utf-8', (err, data) => { 
-    if (err) throw err; 
-  
-    // Converting Raw Buffer to text 
-    // data using tostring function. 
-    alert(data); 
-}) 
+    $.get('a.txt', function(data) {
+   alert(data);
+   //process text file line by line
+   $('#element').html(data.replace('n',''));
+});
 });
 </script>
     
